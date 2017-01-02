@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# Import R Packages and Modules\nlibrary(\"ggplot2\")\nlibrary(\"dplyr\")\nlibrary(\"leaflet\")\n\n# Import Crimes_2015 datasets\ncrimes <- read.csv('Crimes_2015.csv', header = TRUE, stringsAsFactors = TRUE)\n\n# Plot Bar Chart showing crimes bases on Offense types\nggplot(crimes, aes(Offense, fill=Offense) ) + geom_bar() + ggtitle(\"Graph showing arrests based on types of offense.\") + xlab(\"Offense\") + ylab(\"Total Crimes\") + labs(fill = \"Offense types\")\n\n# Plot Bar Chart showing crimes bases on neighborhood\nggplot(crimes, aes(Neighborhood, fill=Neighborhood) ) + geom_bar() + ggtitle(\"Graph showing arrests based on Neighborhood.\") + xlab(\"Neighborhood\") + ylab(\"Total Crimes\") + labs(fill = \"Neighborhood\")\n\n# Plot Bar Chart showing crimes bases on Month\nggplot(crimes, aes(Month, fill=Month) ) + geom_bar(width = 0.5) + ggtitle(\"Graph showing arrests based on Month of crime.\") + xlab(\"Month\") + ylab(\"Total Crimes\") + labs(fill = \"Month\")\n\n# Plot Bar Chart showing crimes bases on Precinct\nggplot(crimes, aes(Precinct, fill=Precinct) ) + geom_bar(width = 0.5) + ggtitle(\"Graph showing arrests based on Precinct.\") + xlab(\"Precinct\") + ylab(\"Total Crimes\") + labs(fill = \"Precinct\")\n\n# Plot a map showing the first 20 rows from the `crimes` dataset\nleaflet(data = crimes[1:20,]) %>% addTiles() %>%\n  addMarkers(~Longitude, ~Latitude, popup = ~as.character(Description))\n\n# Plot a clustered map of the first 1000 rows\nleaflet(data = crimes[1:1000,]) %>% addProviderTiles(\"CartoDB.Positron\") %>% addMarkers(\n  ~Longitude, \n  ~Latitude, \n  popup = ~as.character(Description),\n  clusterOptions = markerClusterOptions()\n)\n\n# Plot a pallete map \npal <- colorFactor(c(\"navy\", \"red\", \"green\", \"blue\", \"orange\", \"purple\"), domain = c(\"1\", \"2\", \"3\", \"4\", \"5\", \"18\"))\nleaflet(data = crimes[1:100,]) %>% addTiles() %>% addCircleMarkers(\n    ~Longitude, \n    ~Latitude,     \n    popup = ~as.character(Description),\n    radius = crimes$Precinct,\n    color = ~pal(Precinct),\n    stroke = FALSE, \n    fillOpacity = 0.5\n)\n",
+    "created" : 1483319045182.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "495028142",
+    "id" : "AF92A5CB",
+    "lastKnownWriteTime" : 1483321685,
+    "last_content_update" : 1483321685630,
+    "path" : "D:/git-repositories/minneapolis_crimedata_mapping_with_r/eda/data_exploration.r",
+    "project_path" : "data_exploration.r",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

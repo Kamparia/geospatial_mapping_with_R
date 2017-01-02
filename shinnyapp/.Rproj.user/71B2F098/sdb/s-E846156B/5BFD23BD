@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\nlibrary(leaflet)\nlibrary(ggplot2)\nlibrary(dplyr)\n\nshinyServer(function(input, output) {\n\n  # Import Crimes_2015 datasets\n  crimes <- read.csv('../eda/Crimes_2015.csv', header = TRUE, stringsAsFactors = TRUE)\n  \n  output$map <- renderLeaflet({\n\n    # Plot a clustered map of the first 1000 rows\n    leaflet(data = crimes[1:1000,]) %>% addProviderTiles(\"CartoDB.Positron\") %>% addMarkers(\n      ~Longitude, \n      ~Latitude, \n      popup = ~as.character(Description),\n      clusterOptions = markerClusterOptions()\n    )    \n    \n  })  \n  \n})\n",
+    "created" : 1483323133003.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4121230898",
+    "id" : "5BFD23BD",
+    "lastKnownWriteTime" : 1483323668,
+    "last_content_update" : 1483323668942,
+    "path" : "D:/git-repositories/minneapolis_crimedata_mapping_with_r/shinnyapp/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

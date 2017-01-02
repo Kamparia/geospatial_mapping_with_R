@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(shiny)\nlibrary(RColorBrewer)\n\nui <- bootstrapPage(\n\n  tags$head(\n    # Include our custom CSS\n    includeCSS(\"./assets/styles.css\")\n  ),  \n  \n  leafletOutput(\"map\", width = \"100%\", height = \"100%\"),\n  absolutePanel(top = 10, right = 10, id = \"controls\", class = \"panel panel-default\", fixed = TRUE,\n                draggable = TRUE, height = \"auto\",                \n                \n    # Application title\n    titlePanel(\"Minneapolis Crime Data\"),        \n    \n    sliderInput(\"range\", \"Magnitudes\", min(quakes$mag), max(quakes$mag),\n                value = range(quakes$mag), step = 0.1\n    ),\n    \n    selectInput(\"offense\", \"Type of Offense\",\n                rownames(subset(brewer.pal.info, category %in% c(\"seq\", \"div\")))\n    ),\n    \n    checkboxInput(\"legend\", \"Show legend\", TRUE)\n  )\n)",
+    "created" : 1483323132664.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4029603990",
+    "id" : "C529C1C2",
+    "lastKnownWriteTime" : 1483325813,
+    "last_content_update" : 1483325813980,
+    "path" : "D:/git-repositories/minneapolis_crimedata_mapping_with_r/shinnyapp/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
