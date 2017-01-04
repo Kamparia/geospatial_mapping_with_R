@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# Import R Packages and Modules\nlibrary(dplyr)\nlibrary(stringr)\n\n# Import our datasets\nraw <- read.csv('../data/crimes.csv', header = TRUE, stringsAsFactors = TRUE, na.strings=c(\"\",\"NA\"))\n\n# Using the Select function - Select some particular field from the raw data\ncrimes <- select(.data = raw, Offense, Description, Neighborhood, Precinct, UCRCode, Time, ReportedDate, Long, Lat )\n\n# Change some specific column names in the crimes data\ncolnames(crimes)[which(names(crimes) == \"ReportedDate\")] <- \"Date\"\ncolnames(crimes)[which(names(crimes) == \"Long\")] <- \"Longitude\"\ncolnames(crimes)[which(names(crimes) == \"Lat\")] <- \"Latitude\"\n\n# Derive Year & Month of the crime from timestamp\ncrimes$Date <- str_split_fixed(as.character(crimes$Date), \"T\", 2)[,1]\ncrimes$Year <- format(as.Date(crimes$Date, format=\"%Y-%m-%d\"),\"%Y\")\ncrimes$Month <- format(as.Date(crimes$Date, format=\"%Y-%m-%d\"),\"%m\")\n\n# Query for only records for 2015\ncrimes <- filter(.data = crimes, Year == \"2015\")\n\n# Look for cell with the value NA in crime\ncrimes <- na.omit(crimes)\n\n# Update Month field\ncrimes$Month[crimes$Month == \"01\"] <- \"Jan\"\ncrimes$Month[crimes$Month == \"02\"] <- \"Feb\"\ncrimes$Month[crimes$Month == \"03\"] <- \"Mar\"\ncrimes$Month[crimes$Month == \"04\"] <- \"Apr\"\ncrimes$Month[crimes$Month == \"05\"] <- \"May\"\ncrimes$Month[crimes$Month == \"06\"] <- \"Jun\"\ncrimes$Month[crimes$Month == \"07\"] <- \"Jul\"\ncrimes$Month[crimes$Month == \"08\"] <- \"Aug\"\ncrimes$Month[crimes$Month == \"09\"] <- \"Sep\"\ncrimes$Month[crimes$Month == \"10\"] <- \"Oct\"\ncrimes$Month[crimes$Month == \"11\"] <- \"Nov\"\ncrimes$Month[crimes$Month == \"12\"] <- \"Dec\"\n\n# Re-arrange the columns in crimes_2015\ncrimes <- select(.data = crimes, Offense, Description, Neighborhood, Precinct, UCRCode, Time, Month, Year, Date, Longitude, Latitude )\n\n# Save crime_2015 as .csv\nwrite.csv(crimes, file = \"Crimes.csv\")\n\nView(crimes)\n",
+    "created" : 1483521343923.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "321504648",
+    "id" : "2F24E2C6",
+    "lastKnownWriteTime" : 1483534113,
+    "last_content_update" : 1483534113800,
+    "path" : "D:/git-repositories/minneapolis_crimedata_mapping_with_r/eda/data_wrangling.r",
+    "project_path" : "data_wrangling.r",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -6,7 +6,7 @@
 #
 
 library(shiny)
-library(RColorBrewer)
+library(leaflet)
 
 ui <- bootstrapPage(
 
@@ -16,20 +16,18 @@ ui <- bootstrapPage(
   ),  
   
   leafletOutput("map", width = "100%", height = "100%"),
+
   absolutePanel(top = 10, right = 10, id = "controls", class = "panel panel-default", fixed = TRUE,
                 draggable = TRUE, height = "auto",                
-                
     # Application title
-    titlePanel("Minneapolis Crime Data"),        
-    
-    sliderInput("range", "Magnitudes", min(quakes$mag), max(quakes$mag),
-                value = range(quakes$mag), step = 0.1
-    ),
-    
-    selectInput("offense", "Type of Offense",
-                rownames(subset(brewer.pal.info, category %in% c("seq", "div")))
-    ),
-    
-    checkboxInput("legend", "Show legend", TRUE)
+    titlePanel("2015 Minneapolis Crime Data"),
+    #selectInput("year", "Year", choices = crimes$Year, selected = "2010"),
+    selectInput("offense", "Type of Offense", choices = crimes$Description, selected = ""),
+    selectInput("neighborhood", "Neighborhood", choices = crimes$Neighborhood, selected = ""),
+    plotOutput("datachart", height = 200)
+  ),
+  
+  tags$div(id="cite",
+           'Data source : Mineapolis Open Data (http://opendata.minneapolismn.gov/)'
   )
 )

@@ -9,22 +9,86 @@ library(shiny)
 library(leaflet)
 library(ggplot2)
 library(dplyr)
+library(RColorBrewer)
+
+# Import Crimes datasets
+crimes <- read.csv('../eda/Crimes.csv', header = TRUE, stringsAsFactors = TRUE)  
 
 shinyServer(function(input, output) {
 
-  # Import Crimes_2015 datasets
-  crimes <- read.csv('../eda/Crimes_2015.csv', header = TRUE, stringsAsFactors = TRUE)
-  
-  output$map <- renderLeaflet({
-
-    # Plot a clustered map of the first 1000 rows
-    leaflet(data = crimes[1:1000,]) %>% addProviderTiles("CartoDB.Positron") %>% addMarkers(
+  # Function to plot Leaflet Map based on given data
+  plotMap <- function(data){
+    leaflet(data = data[]) %>% addProviderTiles("CartoDB.Positron") %>% addMarkers(
       ~Longitude, 
       ~Latitude, 
       popup = ~as.character(Description),
       clusterOptions = markerClusterOptions()
     )    
-    
-  })  
+  }
   
+  # Function to ploy Chart based on given data
+  plotChart <- function(data){
+    data$Month <- factor(data$Month, levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"))
+    # Plot Bar Chart showing crimes bases on Month
+    ggplot(data, aes(Month, fill=Month) ) + 
+      geom_bar(width = 0.25) + 
+      ggtitle("Graph showing total arrests against month.") + 
+      xlab("Month") + 
+      ylab("Total Crimes") + 
+      labs(fill = "Month") + 
+      theme(
+        legend.position = "none"
+      )
+  }
+  
+  # UI Selected input components - reactive
+  offense <- reactive({
+    input$offense
+  })
+  neighborhood <- reactive({
+    input$neighborhood
+  })
+  
+  output$map <- renderLeaflet({
+    if( offense() == input$offense ){
+      crimes <- filter(.data = crimes, Description == input$offense)
+      plotMap(crimes)
+      if ( neighborhood() == input$neighborhood ){
+        crimes <- filter(.data = crimes, Neighborhood == input$neighborhood)
+        plotMap(crimes)              
+      }else{
+        
+      }
+    }
+    else if( neighborhood() == input$neighborhood  ){
+      crimes <- filter(.data = crimes, Neighborhood == input$neighborhood)
+      plotMap(crimes)      
+    }
+    else{
+      plotMap(crimes)
+    }    
+    
+  })
+  
+  output$datachart <- renderPlot({
+    plotChart(crimes)
+    if( offense() == input$offense ){
+      crimes <- filter(.data = crimes, Description == input$offense)
+      plotChart(crimes)
+      if ( neighborhood() == input$neighborhood ){
+        crimes <- filter(.data = crimes, Neighborhood == input$neighborhood)
+        plotChart(crimes)              
+      }else{
+        
+      }
+    }
+    else if( neighborhood() == input$neighborhood  ){
+      crimes <- filter(.data = crimes, Neighborhood == input$neighborhood)
+      plotChart(crimes)  
+    }
+    else{
+      plotChart(crimes)
+    }        
+  })
+
 })
