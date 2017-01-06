@@ -13,16 +13,25 @@ The data used in this project is Minneapolis Incidents & Crime data for 2015 (cu
 
 ## Tools
 
-1. R - R is an Open-source programming language and software environment for statistical computing and graphics.
-2. ShinyApp - Shiny is an open source R package that provides an elegant and powerful web framework for building web applications using R. 
-3. Leaflet - Open-source JavaScript library for building mobile-friendly interactive maps.
-4. GGPlot - Data visualization package for the statistical programming language R. 
-5. DPLYR - A powerful R-package for data wrangling and manipultion in R.
+1. [R](https://www.r-project.org/) - R is an Open-source programming language and software environment for statistical computing and graphics.
+2. [ShinyApp](https://shiny.rstudio.com/) - Shiny is an open source R package that provides an elegant and powerful web framework for building web applications using R. 
+3. [Leaflet](http://leafletjs.com/) - Open-source JavaScript library for building mobile-friendly interactive maps.
+4. [GGPlot2](http://ggplot2.org/) - Data visualization package for the statistical programming language R. 
+5. [DPLYR](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) - A powerful R-package for data wrangling and manipultion in R.
 
 ## Contributing
 
 Please feel free to fork this package and contribute by submitting a pull request to enhance the functionalities.
 
+## How can I thank you?
+
+Why not star the github repo? I'd love the attention! Why not share the link for this repository with friends that you think would need this? Spread the word!
+
+Don't forget to [follow me on twitter](https://twitter.com/kamparia)!
+
+Thanks!
+[Olaoye Somide.](http://somideolaoye.com)
+
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE) for more information.
