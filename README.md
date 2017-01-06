@@ -9,7 +9,7 @@ Here is a demonstration of how powerful R can be in carrying out in working with
 
 ## Data
 
-The data used in this project is Minneapolis Incidents & Crime data for 2015 (curtesy of Open Data Minneapolis). The data can be downloaded [here](https://kaggle2.blob.core.windows.net/datasets/113/247/crimes.csv.zip?sv=2015-12-11&sr=b&sig=Y8juQTXHqLZch34JZJ6X32Lv64hCut9rh0GCQ%2F6ME9c%3D&se=2017-01-09T14%3A19%3A04Z&sp=r).
+The data used in this project is Minneapolis Incidents & Crime data for 2015 (curtesy of [Open Data Minneapolis](http://opendata.minneapolismn.gov/)). The data can be downloaded [here](https://kaggle2.blob.core.windows.net/datasets/113/247/crimes.csv.zip?sv=2015-12-11&sr=b&sig=Y8juQTXHqLZch34JZJ6X32Lv64hCut9rh0GCQ%2F6ME9c%3D&se=2017-01-09T14%3A19%3A04Z&sp=r).
 
 ## Tools
 
