@@ -1,9 +1,11 @@
 # Geospatial Mapping & Analysis with R
 
-#### R is great not only for doing statistics, but also for many other tasks, including GIS analysis and working with spatial data.
+> #### R is great not only for doing statistics, but also for many other tasks, including GIS analysis and working with spatial data.
 
 ## Introduction
 Here is a demonstration of how powerful R can be in carrying out in working with spatial data and geospatial analysis.
+
+<img width="1093" alt="screen shot 2016-07-02 at 2 12 14 pm" src="https://raw.githubusercontent.com/Kamparia/geospatial_mapping_with_R/master/shinnyapp/assets/screenshot.png">
 
 ## Data
 
