@@ -19,6 +19,9 @@ The data used in this project is Minneapolis Incidents & Crime data for 2015 (cu
 4. [GGPlot2](http://ggplot2.org/) - Data visualization package for the statistical programming language R. 
 5. [DPLYR](https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html) - A powerful R-package for data wrangling and manipultion in R.
 
+## Demo
+[Click here](https://kamparia.shinyapps.io/minneapolis_crimes/) to view demo.
+
 ## Contributing
 
 Please feel free to fork this package and contribute by submitting a pull request to enhance the functionalities.

@@ -1,19 +1,19 @@
 {
     "collab_server" : "",
     "contents" : "\n# This is the server logic for a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nlibrary(rsconnect)\nlibrary(shiny)\nlibrary(leaflet)\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(RColorBrewer)\n\nsource('global.R')\n\nshinyServer(function(input, output) {\n  # Function to plot Leaflet Map based on given data\n  plotMap <- function(data){\n    leaflet(data = data[]) %>% addProviderTiles(\"CartoDB.Positron\") %>% addMarkers(\n      ~Longitude, \n      ~Latitude, \n      popup = ~as.character(Description),\n      clusterOptions = markerClusterOptions()\n    )    \n  }\n  \n  # Function to ploy Chart based on given data\n  plotChart <- function(data){\n    data$Month <- factor(data$Month, levels = c(\"Jan\", \"Feb\", \"Mar\", \"Apr\", \"May\", \"Jun\", \"Jul\", \"Aug\", \"Sep\", \"Oct\", \"Nov\", \"Dec\"))\n    # Plot Bar Chart showing crimes bases on Month\n    ggplot(data, aes(Month, fill=Month) ) + \n      geom_bar(width = 0.25) + \n      ggtitle(\"Graph showing total arrests against month.\") + \n      xlab(\"Month\") + \n      ylab(\"Total Crimes\") + \n      labs(fill = \"Month\") + \n      theme(\n        legend.position = \"none\"\n      )\n  }\n  \n  # UI Selected input components - reactive\n  offense <- reactive({\n    input$offense\n  })\n  neighborhood <- reactive({\n    input$neighborhood\n  })\n  \n  output$map <- renderLeaflet({\n    if( offense() == input$offense ){\n      crimes <- filter(.data = crimes, Description == input$offense)\n      plotMap(crimes)\n      if ( neighborhood() == input$neighborhood ){\n        crimes <- filter(.data = crimes, Neighborhood == input$neighborhood)\n        plotMap(crimes)              \n      }else{\n        \n      }\n    }\n    else if( neighborhood() == input$neighborhood  ){\n      crimes <- filter(.data = crimes, Neighborhood == input$neighborhood)\n      plotMap(crimes)      \n    }\n    else{\n      plotMap(crimes)\n    }    \n    \n  })\n  \n  output$datachart <- renderPlot({\n    plotChart(crimes)\n    if( offense() == input$offense ){\n      crimes <- filter(.data = crimes, Description == input$offense)\n      plotChart(crimes)\n      if ( neighborhood() == input$neighborhood ){\n        crimes <- filter(.data = crimes, Neighborhood == input$neighborhood)\n        plotChart(crimes)              \n      }else{\n        \n      }\n    }\n    else if( neighborhood() == input$neighborhood  ){\n      crimes <- filter(.data = crimes, Neighborhood == input$neighborhood)\n      plotChart(crimes)  \n    }\n    else{\n      plotChart(crimes)\n    }        \n  })\n\n})\n",
-    "created" : 1483323133003.000,
+    "created" : 1484130500322.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "2761470427",
-    "id" : "5BFD23BD",
+    "id" : "3D4EE255",
     "lastKnownWriteTime" : 1484129877,
-    "last_content_update" : 1484129877372,
+    "last_content_update" : 1484129877,
     "path" : "D:/git-repositories/geospatial_mapping_with_R/shinnyapp/server.R",
     "project_path" : "server.R",
     "properties" : {
     },
-    "relative_order" : 2,
+    "relative_order" : 1,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"
