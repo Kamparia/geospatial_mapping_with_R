@@ -1,0 +1,1 @@
+crimes <- read.csv('./data/Crimes.csv', header = TRUE, stringsAsFactors = TRUE)

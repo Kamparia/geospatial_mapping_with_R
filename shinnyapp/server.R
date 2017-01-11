@@ -5,17 +5,16 @@
 # http://shiny.rstudio.com
 #
 
+library(rsconnect)
 library(shiny)
 library(leaflet)
 library(ggplot2)
 library(dplyr)
 library(RColorBrewer)
 
-# Import Crimes datasets
-crimes <- read.csv('../eda/Crimes.csv', header = TRUE, stringsAsFactors = TRUE)  
+source('global.R')
 
 shinyServer(function(input, output) {
-
   # Function to plot Leaflet Map based on given data
   plotMap <- function(data){
     leaflet(data = data[]) %>% addProviderTiles("CartoDB.Positron") %>% addMarkers(

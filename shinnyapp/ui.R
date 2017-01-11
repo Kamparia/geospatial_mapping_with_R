@@ -5,8 +5,10 @@
 # http://shiny.rstudio.com
 #
 
+library(rsconnect)
 library(shiny)
 library(leaflet)
+library(ggplot2)
 
 ui <- bootstrapPage(
 
